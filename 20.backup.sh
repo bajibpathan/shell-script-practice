@@ -60,13 +60,13 @@ CHECK_DIR "Source" $SOURCE_DIR
 CHECK_DIR "Desitnation" $DEST_DIR
 
 FILES=$(find $SOURCE_DIR -name "*.log" -mtime +$DAYS)
-
-if [ ! -z $FILES ]
+echo $FILES
+if [ ! -z "$FILES" ]
 then
     echo "Files to zip $FILES"
     TIMESTAMP=$(date +%F-%H-%M-%S)
     ZIP_FILE="${DEST_DIR}/app-logs-${TIMESTAMP}.zip"
-    echo $FILES | zip -@ $ZIP_FILE
+    echo $FILES | xargs -n 1 | zip -@ $ZIP_FILE
     
     if [ -f $ZIP_FILE ]
     then
