@@ -73,7 +73,7 @@ then
         echo -e "Created zip file ... $GREEN SUCCESS $NOCOLOR"
         while IFS= read -r filepath
         do 
-            echo "Deleting file: $filepath" | tee - a $LOG_FILE
+            echo "Deleting file: $filepath" | tee -a $LOG_FILE
             rm -rf $filepath
         done <<< $FILES
 
